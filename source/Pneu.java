@@ -19,6 +19,7 @@ public class Pneu {
 
     @Override
     public String toString() {
+        //MR Il manque juste les crochets qui est utilisés dans la consigne
         return "Pneu " + type + "," + pression;
     }
 

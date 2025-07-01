@@ -4,6 +4,9 @@ public class Application {
 
     public static void main(String[] args) {
 
+        //MR Les classes Voiture et Pilote doivent être importées pour être utilisées.
+        //Elles sont dans le mauvais packages source, il faut les mettre dans le répertoire de base src, puis dans models.
+
         // ---------------------------------------------------------------------------------------
         // Etape 1 : Création d'une voiture de Formule
         new Voiture 

@@ -18,6 +18,7 @@ public class Pilote {
         this.nombreCourse = 0;
         this.nombreVictoire = 0;
         this.nombrePodiums = 0;
+        //MR Il faut initialiser le tableau pneusEnReserve avec la taille NOMBRE_PNEUS_EN_RESERVE
         this.pneusEnReserve = new Pneu[0];
         this.voiture = null;
 
@@ -26,6 +27,7 @@ public class Pilote {
     public Pilote(String nom, String nationalite, Voiture voiture) { // j'ai fait se qui était demandé mais je n'ai pas
                                                                      // compris pourquoi on doit faire deux constructeur
                                                                      // qui font a peu près la meme chose
+                                                                     //MR Une fois le constructeur sans voiture assignée, l'autre avec une voiture
         this.nom = nom;
         this.nationalite = nationalite;
         this.voiture = voiture;
@@ -33,6 +35,7 @@ public class Pilote {
         this.nombrePodiums = 0;
         this.nombreVictoire = 0;
         this.nombrePoints = 0;
+        //MR Il faut initialiser le tableau pneusEnReserve avec la taille NOMBRE_PNEUS_EN_RESERVE
         this.pneusEnReserve = new Pneu[0];
 
     }
@@ -41,6 +44,7 @@ public class Pilote {
         boolean depotReussi = false;
         for (int i = 0; i < pneusEnReserve.length; i++) {
             if (pneusEnReserve[i] == null) {
+                //MR Il faut ensuite ajouter le pneu dans le tableau pneusEnReserve
                 depotReussi = true;
                 break;
             }
@@ -50,11 +54,14 @@ public class Pilote {
     }
 
     public Pneu retirerPneuEnReserve(TypePneu type) {
+        //MR Il faut créer un Pneu vide (null) pour le retourner si on ne trouve pas de pneu de ce type
         for (int i = 0; i < pneusEnReserve.length; i++) {
             if (pneusEnReserve[i] != null) {
+                //MR Il faut vérifier si le pneu de type demandé est présent dans le tableau pneusEnReserve
                 pneusEnReserve[i] = null;
             }
         }
+        //MR Tu fais de la récursion ici, pas bien
         return retirerPneuEnReserve(type); // je suis absolument pas sur de se que je viens de faire mais au moins j'ai
                                            // pas d'erreur
 
@@ -67,6 +74,7 @@ public class Pilote {
         int rouge = 0;
 
         for (int i = 0; i < pneusEnReserve.length; i++) {
+            //MR Il faut vérifier uniquement les pneus du type reçu en paramètre
             if (TypePneu.DUR_BLANC != null) {
                 blanc++;
 
@@ -95,6 +103,7 @@ public class Pilote {
 
     public Pneu[] getPneusSansEnReserveSansTrous() {
         int nbrePneuSansTrous = 0;
+        //MR C'est pas mal, mais la création du tableau sansTrous doit être faite après avoir compté le nombre de pneus non null
         Pneu[] sansTrous = new Pneu[nbrePneuSansTrous];
         for (int i = 0; i < pneusEnReserve.length; i++) {
             if (pneusEnReserve[i] != null) {
@@ -115,6 +124,7 @@ public class Pilote {
                                                           // retourner un string alors que je dois calculer une moyenne
                                                           // enfait c'est les trois dernière que je comprends pas, je
                                                           // sais pas vraiment comment m'y prendre
+                                                          //MR Il faut faire la moyenne des pressions et ensuite l'afficher dans un format lisible ("2.00")
 
         }
     }
@@ -176,10 +186,12 @@ public class Pilote {
 
     @Override
     public String toString() {
+        //MR Pourquoi parcourir tous le pnus en réserve ?
         for (int i = 0; i < pneusEnReserve.length; i++) {
             String resultat = "Pilote: " + nom + (" + nationalite + ");
 
             if (voiture != null) {
+                //MR Il faut utiliser les méthodes de la voiture pour obtenir le nom de l'équipe et le numéro
                 getNomEquipe();
                 getNumero();
                 for (int j = 0; j < pneusEnReserve.length; j++) {
@@ -188,6 +200,7 @@ public class Pilote {
                     resultat += "-> Course: " + getNombreCourse();
                     resultat += "-> Victoires: " + getNombreDeVictoires();
                     resultat += "-> Podiums: " + getNombreDePodiums();
+                    //MR Il faut mettre ceci dans un else
                     resultat += "-> Pas de voiture assignée";
 
                 }
@@ -195,6 +208,7 @@ public class Pilote {
 
             for (Pneu pneu : pneusEnReserve) {
                 if (pneu[i] != null) {
+                    //MR Il faut utiliser le pneu pour obtenir le type de pneu
                     getType();
                 }
                 resultat += "-> Pneu en réserve: " + type;
